@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema(
     },
     age: {
       type: Number,
-      default:18,
+      default: 18,
     },
     gender: {
       type: String,
@@ -64,6 +64,13 @@ const userSchema = new mongoose.Schema(
           type: String,
           trim: true,
         },
+      },
+    ],
+    createdItems: [
+      //  field to store IDs of items created by the user
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Item",
       },
     ],
     dp: {

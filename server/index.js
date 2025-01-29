@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes.js");
 const profileRoutes = require("./routes/profileRoutes.js");
+const itemRoutes = require("./routes/itemRoutes.js");
 require("dotenv").config();
 const { connectWithDB } = require("./config/database.js");
 
@@ -12,6 +13,7 @@ connectWithDB();
 
 app.use(authRoutes);
 app.use(profileRoutes);
+app.use(itemRoutes);
 
 const port = process.env.port;
 app.listen(port, () => {

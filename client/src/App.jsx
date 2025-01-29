@@ -8,6 +8,7 @@ import Items from './pages/Items'
 import Orders from './pages/Orders'
 import Deliver from './pages/Deliver'
 import Profile from './pages/Profile'
+import AddItem from './pages/AddItem'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/dashboard/items' element={<PrivateRoute><Items /></PrivateRoute>}></Route>
         <Route path='/dashboard/orders' element={<PrivateRoute><Orders /></PrivateRoute>}></Route>
         <Route path='/dashboard/deliver' element={<PrivateRoute><Deliver /></PrivateRoute>}></Route>
+        <Route path='/dashboard/add-item' element={<PrivateRoute><AddItem/></PrivateRoute>}></Route>
       </Route>
     </Routes>
   )

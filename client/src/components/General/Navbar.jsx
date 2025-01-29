@@ -20,7 +20,7 @@ function Navbar() {
     const [isActive, setIsActive] = useState(3);
     function handleLogout() {
         dispatch(setToken(null));
-        dispatch(setUser(null));
+        // dispatch(setUser(null));
         navigate('/');
     }
     return (
