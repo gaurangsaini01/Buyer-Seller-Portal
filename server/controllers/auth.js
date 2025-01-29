@@ -2,7 +2,6 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 var jwt = require("jsonwebtoken");
-const Profile = require("../models/profile");
 
 async function signup(req, res) {
   try {
@@ -10,10 +9,26 @@ async function signup(req, res) {
     const { firstName, lastName, email, password, confirmPassword } = req.body;
 
     //validate data
-    if (!firstName || !email || !password || !confirmPassword || !lastName) {
+    if (
+      !firstName ||
+      !email ||
+      !password ||
+      !confirmPassword ||
+      !lastName ||
+      firstName.trim() == "" ||
+      lastName.trim() == ""
+    ) {
       return res.status(403).json({
         success: false,
         message: "Field Missing",
+      });
+    }
+
+    const nameRegex = /^[a-zA-Z\s]+$/;
+    if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid Name Format",
       });
     }
 
@@ -53,20 +68,12 @@ async function signup(req, res) {
     //if all good hash password and create entry in db and send success response
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const additionalDetails = await Profile.create({
-      age: null,
-      gender: null,
-      about: null,
-      contactNumber: null,
-    });
-
     const user = await User.create({
       firstName,
       lastName,
       email,
       password: hashedPassword,
       dp: `https://api.dicebear.com/8.x/initials/svg?seed=${firstName}`,
-      additionalDetails,
     });
     return res.status(200).json({
       success: true,
@@ -103,9 +110,7 @@ async function login(req, res) {
     }
 
     //Check User Exists Or Not
-    const user = await User.findOne({ email })
-      .populate("cart")
-      .populate("additionalDetails");
+    const user = await User.findOne({ email }).populate("cart");
     if (!user) {
       return res.status(400).json({
         success: false,
@@ -122,11 +127,11 @@ async function login(req, res) {
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: "2d",
       });
-      user.token = token;
+      //   user.token = token;
       res.status(200).json({
         success: true,
         message: "Logged In Successfully",
-        user,
+        // user,
         token,
       });
     }

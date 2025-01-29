@@ -8,3 +8,13 @@
     color: #3751FE;
     font-weight: light;
   }
+.inputEdit{
+    border: 1px solid black ;
+    width: 85%;
+    padding: 8px;
+    outline: none;
+    font-weight: light;
+  }
+  .active {
+    color: #ffd60a;
+  }

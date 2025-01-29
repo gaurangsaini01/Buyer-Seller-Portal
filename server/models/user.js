@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Item = require("./item");
-const Profile = require("./profile");
 const userSchema = new mongoose.Schema(
   {
     firstName: {
@@ -17,14 +16,22 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      //   match: /@iiit\.ac\.in$/, // Only IIIT emails allowed
     },
     age: {
       type: Number,
-      //   min: 18, // Optional: Assume minimum age is 18
+      default:18,
+    },
+    gender: {
+      type: String,
+      enum: ["Male", "Female"],
+    },
+    about: {
+      type: String,
+      trim: true,
+      default: "",
     },
     contactNumber: {
-      type: String,
+      type: Number,
     },
     password: {
       type: String,
@@ -61,10 +68,6 @@ const userSchema = new mongoose.Schema(
     ],
     dp: {
       type: String,
-    },
-    additionalDetails: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Profile",
     },
   },
   {

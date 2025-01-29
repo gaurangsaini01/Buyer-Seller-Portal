@@ -9,8 +9,8 @@ async function operationLogin(data, navigate, dispatch) {
     if (!res.data.success) {
       throw new Error(res.data.message);
     }
-    dispatch(setToken(res.data.token));
-    dispatch(setUser(res.data.user));
+    await dispatch(setToken(res.data.token));
+    // await dispatch(setUser(res.data.user));
     toast.success("Logged In !", {
       position: "top-center",
       autoClose: 1500,
@@ -21,7 +21,7 @@ async function operationLogin(data, navigate, dispatch) {
       progress: undefined,
       theme: "dark",
     });
-    navigate("/dashboard");
+    navigate("/dashboard/my-profile");
     return;
   } catch (err) {
     toast.error(err.response.data.message, {
