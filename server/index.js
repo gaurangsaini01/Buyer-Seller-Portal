@@ -9,6 +9,7 @@ const { connectWithDB } = require("./config/database.js");
 
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
 connectWithDB();
 
 app.use(authRoutes);

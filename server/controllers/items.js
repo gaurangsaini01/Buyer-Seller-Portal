@@ -52,4 +52,33 @@ async function getAllItems(req, res) {
     });
   }
 }
-module.exports = { addItem, getAllItems };
+async function getItemData(req, res) {
+  try {
+    const id = req.query.id;
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "No item Id present",
+      });
+    }
+    const item = await Item.findById(id).populate("sellerId");
+    if (!item) {
+      return res.status(400).json({
+        success: false,
+        message: "No item present with such ID",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Details Fetched Successfully",
+      data: item,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      success: false,
+      message: "Backend Error in fetching item details",
+    });
+  }
+}
+module.exports = { addItem, getAllItems, getItemData };

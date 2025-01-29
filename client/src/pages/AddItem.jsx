@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {addItem} from '../services/operations/item';
+import { addItem } from '../services/operations/item';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -70,7 +70,7 @@ function AddItem() {
   return (
     <div>
       <div className='flex'>
-        <button className="hover:cursor-pointer" onClick={() => navigate('/dashboard/items')}>Back</button>
+        <button className=' cursor-pointer px-6 py-2 rounded-md bg-black text-white' onClick={() => navigate('/dashboard/items')}>Back</button>
         <div className='font-semibold w-full text-center text-3xl'>Add Item to Sell</div>
       </div>
       <div className='w-full mt-6'>

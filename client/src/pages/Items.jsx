@@ -18,9 +18,9 @@ function Items() {
     getData();
   }, [])
   return (
-    <div>
-      <button onClick={() => navigate('/dashboard/add-item')}>Add Item</button>
-      <div className='w-full border-2'>
+    <div className='space-y-10'>
+      <div className='flex justify-end px-6'><button className=' cursor-pointer px-6 py-2 rounded-md bg-black text-white' onClick={() => navigate('/dashboard/add-item')}>Add Item</button></div>
+      <div className='w-full flex flex-wrap justify-evenly gap-6'>
         {
           items.map((item) => {
             return <ItemCard key={item._id} item={item} />

@@ -9,6 +9,7 @@ import Orders from './pages/Orders'
 import Deliver from './pages/Deliver'
 import Profile from './pages/Profile'
 import AddItem from './pages/AddItem'
+import ItemDetails from './pages/ItemDetails'
 
 function App() {
   return (
@@ -18,9 +19,10 @@ function App() {
       <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
         <Route path='/dashboard/my-profile' element={<PrivateRoute><Profile /></PrivateRoute>}></Route>
         <Route path='/dashboard/items' element={<PrivateRoute><Items /></PrivateRoute>}></Route>
+        <Route path='/dashboard/items/:id' element={<PrivateRoute><ItemDetails /></PrivateRoute>}></Route>
         <Route path='/dashboard/orders' element={<PrivateRoute><Orders /></PrivateRoute>}></Route>
         <Route path='/dashboard/deliver' element={<PrivateRoute><Deliver /></PrivateRoute>}></Route>
-        <Route path='/dashboard/add-item' element={<PrivateRoute><AddItem/></PrivateRoute>}></Route>
+        <Route path='/dashboard/add-item' element={<PrivateRoute><AddItem /></PrivateRoute>}></Route>
       </Route>
     </Routes>
   )

@@ -56,7 +56,7 @@ function AuthTemplate({ type }) {
                         </div>}
                         <div className='flex flex-col gap-2'>
                             <label className='text-sm ' htmlFor="email">Email Address</label>
-                            <input value={formData.email} name='email' onChange={changeHandler} className='inputClass' placeholder='example@abc.com' type="text" />
+                            <input value={formData.email} name='email' onChange={changeHandler} className='inputClass' placeholder='example@iiit.com' type="text" />
                         </div>
                         <div className='flex flex-col gap-2'>
                             <label className='text-sm' htmlFor="password">Password</label>
