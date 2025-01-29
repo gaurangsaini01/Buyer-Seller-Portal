@@ -4,6 +4,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes.js");
 const profileRoutes = require("./routes/profileRoutes.js");
 const itemRoutes = require("./routes/itemRoutes.js");
+const cartRoutes = require("./routes/cartRoutes.js")
 require("dotenv").config();
 const { connectWithDB } = require("./config/database.js");
 
@@ -15,6 +16,7 @@ connectWithDB();
 app.use(authRoutes);
 app.use(profileRoutes);
 app.use(itemRoutes);
+app.use(cartRoutes);
 
 const port = process.env.port;
 app.listen(port, () => {

@@ -10,6 +10,7 @@ import Deliver from './pages/Deliver'
 import Profile from './pages/Profile'
 import AddItem from './pages/AddItem'
 import ItemDetails from './pages/ItemDetails'
+import Cart from './pages/Cart'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/dashboard/items/:id' element={<PrivateRoute><ItemDetails /></PrivateRoute>}></Route>
         <Route path='/dashboard/orders' element={<PrivateRoute><Orders /></PrivateRoute>}></Route>
         <Route path='/dashboard/deliver' element={<PrivateRoute><Deliver /></PrivateRoute>}></Route>
+        <Route path='/dashboard/cart' element={<PrivateRoute><Cart /></PrivateRoute>}></Route>
         <Route path='/dashboard/add-item' element={<PrivateRoute><AddItem /></PrivateRoute>}></Route>
       </Route>
     </Routes>
