@@ -10,6 +10,7 @@ const ADD_TO_CART_API = BASE_URL + "/addtocart";
 const UPDATE_CART_API = BASE_URL + "/updatecart";
 const GET_CART_API = BASE_URL + "/getcart";
 const DELETE_CART_API = BASE_URL + "/deletecart";
+const BUY_ITEMS_API = BASE_URL + '/buyitem'
 
 export {
   LOGIN_API,
@@ -23,4 +24,5 @@ export {
   UPDATE_CART_API,
   GET_CART_API,
   DELETE_CART_API,
+  BUY_ITEMS_API
 };

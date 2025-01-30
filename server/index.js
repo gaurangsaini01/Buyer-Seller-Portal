@@ -4,19 +4,21 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes.js");
 const profileRoutes = require("./routes/profileRoutes.js");
 const itemRoutes = require("./routes/itemRoutes.js");
-const cartRoutes = require("./routes/cartRoutes.js")
+const cartRoutes = require("./routes/cartRoutes.js");
+const orderRoutes = require("./routes/orderRoutes.js");
 require("dotenv").config();
 const { connectWithDB } = require("./config/database.js");
 
 app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static('uploads'));
+app.use("/uploads", express.static("uploads"));
 connectWithDB();
 
 app.use(authRoutes);
 app.use(profileRoutes);
 app.use(itemRoutes);
 app.use(cartRoutes);
+app.use(orderRoutes);
 
 const port = process.env.port;
 app.listen(port, () => {

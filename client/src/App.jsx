@@ -13,6 +13,7 @@ import ItemDetails from './pages/ItemDetails'
 import Cart from './pages/Cart'
 
 function App() {
+  
   return (
     <Routes>
       <Route path="/" element={<OpenRoute><AuthTemplate type={"login"} /></OpenRoute>}></Route>

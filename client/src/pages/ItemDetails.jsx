@@ -13,8 +13,8 @@ function ItemDetails() {
     const { id } = useParams();
     const { token } = useSelector(state => state.auth)
 
-   async function handleAddToCart(id) {
-        const res = await addToCart(id,token,dispatch);
+    async function handleAddToCart(id) {
+        await addToCart(id, token, dispatch);
     }
 
     useEffect(() => {
@@ -52,7 +52,7 @@ function ItemDetails() {
                     </div>
                     <div className='space-x-4 mt-6'>
                         <button onClick={() => handleAddToCart(item._id)} className=' transition-all ease-in-out duration-150 hover:scale-95 cursor-pointer px-6 py-2 rounded-md bg-white/80 text-black border  border-black'>Add To Cart</button>
-                        <button className=' transition-all ease-in-out duration-150 hover:scale-95 cursor-pointer px-6 py-2 rounded-md bg-black text-white/80'>Buy now</button>
+                        {/* <button className=' transition-all ease-in-out duration-150 hover:scale-95 cursor-pointer px-6 py-2 rounded-md bg-black text-white/80'>Buy now</button> */}
                     </div>
                 </div>
             </div>}
