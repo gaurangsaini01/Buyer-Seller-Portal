@@ -18,15 +18,15 @@ async function buyItem(req, res) {
         });
       }
 
-      const otp = Math.floor(100000 + Math.random() * 900000).toString(); // Generate OTP
-      const hashedOTP = await bcrypt.hash(otp, 10);
+      const otp = Math.floor(100000 + Math.random() * 900000); // Generate OTP
+    //   const hashedOTP = await bcrypt.hash(otp, 10);
 
       await Order.create({
         buyerId: userId,
         sellerId: item.sellerId,
         itemId: item._id,
         amount: item.price,
-        otp: hashedOTP,
+        otp,
       });
     }
 
@@ -45,5 +45,31 @@ async function buyItem(req, res) {
     });
   }
 }
+async function getPreviousBuyOrders(req, res) {
+  try {
+    const userId = req.user.id;
+    const orders = await Order.find({
+      buyerId: userId,
+      status: "Pending",
+    }).populate("buyerId sellerId itemId");
+    if (!orders) {
+      return res.status(400).json({
+        success: false,
+        message: "No Pending order Present",
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      message: "Fetched Successfully",
+      data: orders,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "Backend Errors Getting items",
+    });
+  }
+}
 
-module.exports = { buyItem };
+module.exports = { buyItem, getPreviousBuyOrders };

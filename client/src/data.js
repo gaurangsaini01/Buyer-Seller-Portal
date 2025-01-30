@@ -7,7 +7,7 @@ const navbarLinks = [
   {
     id: 1,
     name: "Orders",
-    link: "/dashboard/orders",
+    link: "/dashboard/orders/pending-buy-orders",
   },
   {
     id: 2,
@@ -20,4 +20,9 @@ const navbarLinks = [
     link:"/dashboard/my-profile"
   }
 ];
-export default navbarLinks;
+const filterRoutes = [
+  { path: '/dashboard/orders/pending-buy-orders', label: 'Pending Buy Orders' },
+  { path: '/dashboard/orders/previously-bought-items', label: 'Previously Bought Orders' },
+  { path: '/dashboard/orders/previously-sold-items', label: 'Previously Sold Orders' }
+];
+export {navbarLinks,filterRoutes};
