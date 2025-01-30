@@ -4,33 +4,48 @@ import { getItemsData } from '../services/operations/item';
 import { useSelector } from 'react-redux';
 import ItemCard from '../components/ItemsPage/ItemCard';
 
+const categoriesList = ["Electronics", "Fashion", "Health", "Education"];
+
 function Items() {
-  const { token } = useSelector(state => state.auth)
+  const { token } = useSelector(state => state.auth);
   const [items, setItems] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get("search") || ""; // Extract search from URL
-  console.log(searchQuery)
+
+  const searchQuery = searchParams.get("search") || "";
+  const categories = searchParams.get("categories")?.split(",") || [];
+
   const [search, setSearch] = useState(searchQuery);
+  const [selectedCategories, setSelectedCategories] = useState(categories);
+
   const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
-    setSearchParams({ search }); // Updates the URL
+    setSearchParams({ search, categories: selectedCategories.join(",") });
   }
 
   function handleChange(e) {
     setSearch(e.target.value);
   }
 
+  function handleCategoryChange(e) {
+    const category = e.target.value;
+    setSelectedCategories(prev =>
+      prev.includes(category)
+        ? prev.filter(c => c !== category)
+        : [...prev, category]
+    );
+  }
+
   useEffect(() => {
     async function getData() {
-      const data = await getItemsData(token, searchQuery);
+      const data = await getItemsData(token, searchQuery, selectedCategories);
       if (data) {
         setItems(data);
       }
     }
     getData();
-  }, [searchQuery]); // Re-run when search query changes
+  }, [searchQuery, selectedCategories]);
 
   return (
     <div className='space-y-10'>
@@ -41,12 +56,27 @@ function Items() {
         </form>
         <button className='cursor-pointer px-6 py-2 rounded-md bg-black text-white' onClick={() => navigate('/dashboard/add-item')}>Add Item</button>
       </div>
+
+      {/* Category Filters */}
+      <div className="flex gap-4 px-6">
+        {categoriesList.map((category) => (
+          <label key={category} className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              value={category}
+              checked={selectedCategories.includes(category)}
+              onChange={handleCategoryChange}
+            />
+            {category}
+          </label>
+        ))}
+      </div>
+
+      {/* Items List */}
       <div className='w-full flex flex-wrap justify-evenly gap-6'>
-        {
-          items.map((item) => {
-            return <ItemCard key={item._id} item={item} />
-          })
-        }
+        {items.length > 0 ? items.map((item) => (
+          <ItemCard key={item._id} item={item} />
+        )) : <p>No items found</p>}
       </div>
     </div>
   )

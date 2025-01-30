@@ -23,13 +23,15 @@ async function addItem(formData, token) {
 }
 
 
-async function getItemsData(token, search = "") {
+async function getItemsData(token, search = "", categories = []) {
   try {
-    const res = await axios.get(`${GET_ALL_ITEMS_API}?search=${search}`, {
+    const categoryQuery = categories.length > 0 ? `&categories=${categories.join(",")}` : "";
+    const res = await axios.get(`${GET_ALL_ITEMS_API}?search=${search}${categoryQuery}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+
     if (!res.data.success) {
       throw new Error("Cannot get data");
     }
@@ -43,6 +45,7 @@ async function getItemsData(token, search = "") {
     });
   }
 }
+
 
 async function getItemData(id, token) {
   try {

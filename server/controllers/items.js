@@ -39,19 +39,25 @@ async function addItem(req, res) {
 async function getAllItems(req, res) {
   try {
     const search = req.query.search || "";
+    const categories = req.query.categories ? req.query.categories.split(",") : [];
 
     let query = {};
+
+    // Search filter
     if (search) {
-      query = {
-        $or: [
-          { itemName: { $regex: search, $options: "i" } },
-          { description: { $regex: search, $options: "i" } },
-        ],
-      };
+      query.$or = [
+        { itemName: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+      ];
+    }
+
+    // Category filter
+    if (categories.length > 0) {
+      query.category = { $in: categories };
     }
 
     const items = await Item.find(query);
-
+    
     return res.status(200).json({
       success: true,
       message: "All Items fetched successfully!",
@@ -65,6 +71,7 @@ async function getAllItems(req, res) {
     });
   }
 }
+
 
 async function getItemData(req, res) {
   try {
