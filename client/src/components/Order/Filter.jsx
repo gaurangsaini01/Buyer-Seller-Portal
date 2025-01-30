@@ -5,7 +5,6 @@ import { filterRoutes } from '../../data';
 function Filter() {
     const navigate = useNavigate();
     const location = useLocation();
-    console.log(location)
 
     return (
         <div className='w-full overflow-hidden'>

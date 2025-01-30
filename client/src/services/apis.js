@@ -10,10 +10,18 @@ const ADD_TO_CART_API = BASE_URL + "/addtocart";
 const UPDATE_CART_API = BASE_URL + "/updatecart";
 const GET_CART_API = BASE_URL + "/getcart";
 const DELETE_CART_API = BASE_URL + "/deletecart";
-const BUY_ITEMS_API = BASE_URL + '/buyitem'
-const GET_PENDING_BUY_ORDERS_API = BASE_URL + '/getpreviousbuyorders'
+const BUY_ITEMS_API = BASE_URL + "/buyitem";
+const GET_PENDING_BUY_ORDERS_API = BASE_URL + "/getpreviousbuyorders";
+const GET_PENDING_SELL_ORDERS_API = BASE_URL + "/getpendingsellorders";
+const DELIVER_ORDER_API = BASE_URL + "/deliverorder";
+const GET_PREVIOUS_BOUGHT_ORDERS_API = BASE_URL + "/getpreviousboughtorders";
+const GET_PREVIOUS_SOLD_ORDERS_API = BASE_URL + "/getprevioussoldorders";
 
 export {
+  GET_PREVIOUS_BOUGHT_ORDERS_API,
+  GET_PREVIOUS_SOLD_ORDERS_API,
+  GET_PENDING_SELL_ORDERS_API,
+  DELIVER_ORDER_API,
   LOGIN_API,
   SIGNUP_API,
   GET_PROFILE_DATA,
@@ -26,5 +34,5 @@ export {
   GET_PENDING_BUY_ORDERS_API,
   GET_CART_API,
   DELETE_CART_API,
-  BUY_ITEMS_API
+  BUY_ITEMS_API,
 };
