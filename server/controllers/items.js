@@ -38,10 +38,23 @@ async function addItem(req, res) {
 
 async function getAllItems(req, res) {
   try {
-    const items = await Item.find({});
+    const search = req.query.search || "";
+
+    let query = {};
+    if (search) {
+      query = {
+        $or: [
+          { itemName: { $regex: search, $options: "i" } },
+          { description: { $regex: search, $options: "i" } },
+        ],
+      };
+    }
+
+    const items = await Item.find(query);
+
     return res.status(200).json({
       success: true,
-      message: "All Items fetched successfully !",
+      message: "All Items fetched successfully!",
       data: items,
     });
   } catch (error) {
@@ -52,6 +65,7 @@ async function getAllItems(req, res) {
     });
   }
 }
+
 async function getItemData(req, res) {
   try {
     const id = req.query.id;
