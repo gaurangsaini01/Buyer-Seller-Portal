@@ -14,6 +14,7 @@ import Cart from './pages/Cart'
 import PendingBuy from './components/Order/PendingBuy'
 import PreviousBought from './components/Order/PreviousBought'
 import PreviousSold from './components/Order/PreviousSold'
+import Error from './pages/Error'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='/dashboard/cart' element={<PrivateRoute><Cart /></PrivateRoute>}></Route>
         <Route path='/dashboard/add-item' element={<PrivateRoute><AddItem /></PrivateRoute>}></Route>
       </Route>
+      <Route path='*' element={<Error />}></Route>
     </Routes>
   )
 }

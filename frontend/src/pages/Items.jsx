@@ -73,7 +73,7 @@ function Items() {
       </div>
 
       {/* Items List */}
-      <div className='w-full flex flex-wrap justify-evenly gap-6'>
+      <div className='w-full flex flex-wrap gap-12'>
         {items.length > 0 ? items.map((item) => (
           <ItemCard key={item._id} item={item} />
         )) : <p>No items found</p>}
