@@ -31,8 +31,8 @@ function ItemDetails() {
 
     return (
         <>
-            {loading && <div className='h-screen w-full flex items-center justify-center'> <div className=" loader"></div></div>}
-            {!loading && <div className='flex'>
+            {loading && <div className='p-6 h-screen w-full flex items-center justify-center'> <div className=" loader"></div></div>}
+            {!loading && <div className='flex p-6'>
                 <div className='w-1/2'>
                     <button className=' cursor-pointer px-6 py-2 rounded-md mb-6 bg-black text-white' onClick={() => navigate('/dashboard/items')}>Back</button>
                     <div className='overflow-hidden w-[90%] h-[450px]'>
@@ -47,7 +47,7 @@ function ItemDetails() {
                     </div>
                     <div className='space-y-2 mt-4'>
                         <p className='font-bold text-3xl flex items-center'><MdOutlineCurrencyRupee />{item?.price}</p>
-                        <p className='text-xl'>Category: <span className='text-[#00000090]'>"{item?.category}"</span></p>
+                        <p className='text-xl'>Category: <span className='text-[#00000090]'>{item?.category}</span></p>
                         <p className='text-xl'>Seller : <span className='text-[#00000090]'>{item?.sellerId?.firstName}</span></p>
                     </div>
                     <div className='space-x-4 mt-6'>

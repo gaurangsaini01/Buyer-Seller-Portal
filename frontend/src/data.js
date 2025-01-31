@@ -15,11 +15,10 @@ const navbarLinks = [
     link: "/dashboard/orders/pending-buy-orders",
   },
   {
-    id:3,
+    id: 3,
     name: "Deliver",
     link: "/dashboard/deliver",
   },
- 
 ];
 const filterRoutes = [
   { path: "/dashboard/orders/pending-buy-orders", label: "Pending Buy Orders" },
@@ -32,4 +31,22 @@ const filterRoutes = [
     label: "Previously Sold Orders",
   },
 ];
-export { navbarLinks, filterRoutes };
+
+const categoriesList = [
+  "Electronics",
+  "Fashion",
+  "Home & Kitchen",
+  "Beauty & Personal Care",
+  "Health",
+  "Education",
+  "Sports & Outdoors",
+  "Toys & Games",
+  "Automotive",
+  "Groceries",
+  "Furniture",
+  "Pet Supplies",
+  "Baby Products",
+  "Jewelry & Accessories",
+];
+
+export { navbarLinks, filterRoutes, categoriesList };

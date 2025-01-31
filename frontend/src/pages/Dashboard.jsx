@@ -5,8 +5,10 @@ import { Outlet } from 'react-router-dom'
 function Dashboard() {
     return (
         <div>
-            <Navbar />
-            <div className='p-6'>
+            <div className='fixed w-full bg-white z-20'>
+                <Navbar />
+            </div>
+            <div className='p-6 pt-20'>
                 <Outlet />
             </div>
         </div>

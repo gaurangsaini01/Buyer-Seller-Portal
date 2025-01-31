@@ -13,7 +13,7 @@ function ItemCard({ item }) {
                 <div className='text-2xl font-medium'>{item.itemName}</div>
                 <div className='text-sm text-[#00000080]'>{item.description}</div>
                 <div className='text-2xl flex items-center font-semibold'><MdOutlineCurrencyRupee />{item.price}</div>
-                <div className='text-sm font-semibold'>Category : <span className='text-sm font-medium text-[#00000080]'>"{item.category}"</span></div>
+                <div className='text-sm font-semibold'>Category : <span className='text-sm font-medium text-[#00000080]'>{item.category}</span></div>
             </div>
         </div>
     )

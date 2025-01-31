@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 function Orders() {
   return (
-    <div className="w-full">
+    <div className="w-full p-6">
       <div>
         <Filter />
       </div>

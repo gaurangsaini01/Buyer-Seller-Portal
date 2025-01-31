@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { getProfileData, updateProfile } from '../services/operations/profile'
 import { useSelector } from 'react-redux';
+
 function Profile() {
     const { token } = useSelector((state) => state.auth)
-
     const [data, setData] = useState({});
 
     async function handleUpdate(e) {
@@ -14,11 +14,14 @@ function Profile() {
             setData(res);
         }
     }
+
     function handleChange(e) {
-        setData(prev => {
-            return { ...prev, [e.target.name]: e.target.value }
-        })
+        setData(prev => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }));
     }
+
     useEffect(() => {
         async function getData() {
             const res = await getProfileData(token)
@@ -28,48 +31,107 @@ function Profile() {
     }, [])
 
     return (
-        <div>
-            <h1 className='text-3xl font-bold text-center'>User Details</h1>
-            <form onSubmit={handleUpdate} className='items-center flex flex-col gap-6 mt-12'>
-                <div className='flex gap-2 w-full'>
-                    <div className='flex flex-col w-full'>
-                        <label htmlFor="firstName">FirstName</label>
-                        <input autoComplete='off' className='inputEdit' type="text" value={data?.firstName || ""} name='firstName' onChange={handleChange} />
-                    </div>
-                    <div className='flex flex-col w-full'>
-                        <label htmlFor="lastName">LastName</label>
-                        <input autoComplete='off' className='inputEdit' type="text" value={data?.lastName || ""} name='lastName' onChange={handleChange} />
-                    </div>
-                </div>
-                <div className='flex gap-2 w-full'>
-                    <div className='flex flex-col w-full'>
-                        <label htmlFor="age">Age</label>
-                        <input autoComplete='off' placeholder='Enter age' className='inputEdit w-full' type="number" value={data?.age || ""} name='age' onChange={handleChange} />
-                    </div>
-                    <div className='flex flex-col w-full'>
-                        <label htmlFor="gender">Gender</label>
-                        {/* <input autoComplete='off' className='inputEdit' type="text" placeholder='Male, Female ,Other' value={data?.gender} name='gender' onChange={handleChange} /> */}
-                        <select className='py-2 border-[1px] w-[85%] outline-0' value={data?.gender || ""} onChange={handleChange} name="gender" id="gender">
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-                </div>
-                <div className='flex gap-2 w-full'>
-                    <div className='flex flex-col w-full'>
-                        <label htmlFor="contactNumber">Contact Number</label>
-                        <input autoComplete='off' placeholder='Enter contact Number' className='inputEdit w-full' type="number" value={data?.contactNumber || ""} name='contactNumber' onChange={handleChange} />
-                    </div>
-                    <div className='flex flex-col w-full'>
-                        <label htmlFor="about">About</label>
-                        <input autoComplete='off' className='inputEdit' type="text" placeholder='Enter about yourself' value={data?.about || ""} name='about' onChange={handleChange} />
-                    </div>
-                </div>
-                <button type="submit" className='px-6 py-2 rounded-md border-[1px] bg-black/75 text-white/80 cursor-pointer hover:scale-95 transition-all duration-150 ease-in-out mt-12'>Update Profile</button>
-            </form>
+        <div className="flex justify-center items-center mt-8 px-4">
+            <div className="w-full max-w-2xl bg-white shadow-lg rounded-xl p-6">
+                <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">User Profile</h1>
 
+                <form onSubmit={handleUpdate} className="space-y-6">
+
+                    {/* First Name & Last Name */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label className="text-gray-600 text-sm">First Name</label>
+                            <input
+                                type="text"
+                                name="firstName"
+                                value={data?.firstName || ""}
+                                onChange={handleChange}
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                                autoComplete="off"
+                            />
+                        </div>
+                        <div>
+                            <label className="text-gray-600 text-sm">Last Name</label>
+                            <input
+                                type="text"
+                                name="lastName"
+                                value={data?.lastName || ""}
+                                onChange={handleChange}
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                                autoComplete="off"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Age & Gender */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label className="text-gray-600 text-sm">Age</label>
+                            <input
+                                type="number"
+                                name="age"
+                                value={data?.age || ""}
+                                onChange={handleChange}
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter age"
+                                autoComplete="off"
+                            />
+                        </div>
+                        <div>
+                            <label className="text-gray-600 text-sm">Gender</label>
+                            <select
+                                name="gender"
+                                value={data?.gender || ""}
+                                onChange={handleChange}
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                            >
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    {/* Contact Number & About */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label className="text-gray-600 text-sm">Contact Number</label>
+                            <input
+                                type="number"
+                                name="contactNumber"
+                                value={data?.contactNumber || ""}
+                                onChange={handleChange}
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter contact number"
+                                autoComplete="off"
+                            />
+                        </div>
+                        <div>
+                            <label className="text-gray-600 text-sm">About</label>
+                            <input
+                                type="text"
+                                name="about"
+                                value={data?.about || ""}
+                                onChange={handleChange}
+                                className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                                placeholder="Tell us about yourself"
+                                autoComplete="off"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Submit Button */}
+                    <button
+                        type="submit"
+                        className="w-full bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition-all duration-200"
+                    >
+                        Update Profile
+                    </button>
+
+                </form>
+            </div>
         </div>
-    )
+    );
 }
 
-export default Profile
+export default Profile;
