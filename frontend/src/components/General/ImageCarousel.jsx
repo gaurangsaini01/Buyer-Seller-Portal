@@ -16,19 +16,19 @@ function ImageCarousel({ item }) {
         <div className="relative w-[90%] h-[450px] flex justify-center items-center overflow-hidden">
             {item.image?.length > 0 && (
                 <div className="relative w-full h-full flex justify-center items-center">
-                    <img 
+                    <img
                         className="w-full h-full object-cover"
-                        src={`${import.meta.env.VITE_APP_BACKEND_URL}/${item.image[index]}`} 
-                        alt="Image Carousel" 
+                        src={`${import.meta.env.VITE_APP_BACKEND_URL}/${item.image[index]}`}
+                        alt="Image Carousel"
                     />
-                    <button 
-                        onClick={handleDecrement} 
+                    <button
+                        onClick={handleDecrement}
                         className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
                     >
                         <FaAngleLeft size={30} />
                     </button>
-                    <button 
-                        onClick={handleIncrement} 
+                    <button
+                        onClick={handleIncrement}
                         className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md"
                     >
                         <FaAngleRight size={30} />

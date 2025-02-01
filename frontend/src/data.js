@@ -35,18 +35,16 @@ const filterRoutes = [
 const categoriesList = [
   "Electronics",
   "Fashion",
-  "Home & Kitchen",
-  "Beauty & Personal Care",
+  "Home",
+  "Beauty",
   "Health",
   "Education",
-  "Sports & Outdoors",
-  "Toys & Games",
+  "Sports",
+  "Toys",
   "Automotive",
   "Groceries",
   "Furniture",
-  "Pet Supplies",
-  "Baby Products",
-  "Jewelry & Accessories",
+  "Jewelry",
 ];
 
 export { navbarLinks, filterRoutes, categoriesList };

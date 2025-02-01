@@ -49,7 +49,7 @@ function Items() {
   return (
     <div className=''>
       <div className=' flex justify-end'>
-        <div className='flex gap-4 w-[70%]'>
+        <div className='flex justify-end mr-15 gap-4 w-[70%]'>
 
           <form onSubmit={handleSubmit} className='w-[70%] flex gap-4'>
 

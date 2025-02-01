@@ -41,7 +41,7 @@ async function getAllItems(req, res) {
   try {
     const search = req.query.search || "";
     const categories = req.query.categories
-      ? req.query.categories.split(",")
+      ? req.query.categories.split(",").map((cat) => cat.trim())
       : [];
 
     let query = {};
