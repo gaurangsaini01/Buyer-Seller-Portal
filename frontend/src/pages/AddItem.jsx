@@ -9,7 +9,7 @@ function AddItem() {
   const { token } = useSelector(state => state.auth)
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState([]);
   const [itemData, setItemData] = useState({
     itemName: "",
     price: 0,
@@ -32,7 +32,9 @@ function AddItem() {
       formData.append(key, itemData[key]);
     })
     if (file) {
-      formData.append('file', file);
+      for (let i = 0; i < file.length; i++) {
+        formData.append('file', file[i]);
+      }
     }
     else {
       toast.error('Upload Image', {
@@ -53,13 +55,13 @@ function AddItem() {
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
-      setFile(null);
+      setFile([]);
     }
   }
   function handleFileChange(e) {
-    const file = e.target.files[0];
-    if (file) {
-      setFile(file);
+    const files = e.target.files;
+    if (files) {
+      setFile(files);
     }
   }
   function handleChange(e) {
@@ -78,7 +80,7 @@ function AddItem() {
         <form onSubmit={handleSubmit} className='w-[70%]  mx-auto space-y-6 flex flex-col items-center'>
           <div className='w-full flex gap-28 items-center'>
             <label className='font-medium' htmlFor="image">Image</label>
-            <input ref={fileInputRef} required type="file" className='file:border-2 file:rounded-full file:px-4' accept="image/*" name='image' onChange={handleFileChange} />
+            <input ref={fileInputRef} required multiple type="file" className='file:border-2 file:rounded-full file:px-4' accept="image/*" name='image' onChange={handleFileChange} />
 
           </div>
           <div className='w-full flex justify-between items-center'>

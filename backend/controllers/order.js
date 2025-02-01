@@ -5,8 +5,7 @@ async function buyItem(req, res) {
   try {
     const userId = req.user.id; // buyer
     const cartItems = req.body.cartItems;
-    // const totalPrice = req.body.totalPrice;
-    // console.log(userId, cartItems, totalPrice);
+   
 
     for (const item of cartItems) {
       const exists = await Order.findOne({ buyerId: userId, itemId: item._id });

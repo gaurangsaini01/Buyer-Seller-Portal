@@ -18,6 +18,7 @@ async function addItem(formData, token) {
       position: "top-center",
       theme: "dark",
     });
+    console.log(res.data.data)
     return res.data.success;
   } catch (err) {}
 }

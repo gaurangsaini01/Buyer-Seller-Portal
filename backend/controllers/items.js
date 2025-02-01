@@ -4,8 +4,9 @@ const User = require("../models/user");
 async function addItem(req, res) {
   try {
     const userId = req.user.id;
-    const file = req.file;
+    const files = req.files; //files
     const { itemName, price, description, category } = req.body;
+    const filepaths = files.map((file) => file.path);
 
     const newItem = await Item.create({
       itemName,
@@ -13,7 +14,7 @@ async function addItem(req, res) {
       category,
       description,
       sellerId: userId,
-      image: file.path,
+      image: filepaths,
     });
 
     await User.findByIdAndUpdate(
@@ -25,7 +26,7 @@ async function addItem(req, res) {
     res.status(201).json({
       success: true,
       message: "Item created successfully",
-      item: newItem,
+      data: newItem,
     });
   } catch (error) {
     console.log(error);

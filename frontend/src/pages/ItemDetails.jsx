@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { getItemData } from '../services/operations/item';
 import { MdOutlineCurrencyRupee } from "react-icons/md";
 import { addToCart } from '../services/operations/cart';
+import ImageCarousel from '../components/General/ImageCarousel';
 
 function ItemDetails() {
     const dispatch = useDispatch();
@@ -35,9 +36,11 @@ function ItemDetails() {
             {!loading && <div className='flex p-6'>
                 <div className='w-1/2'>
                     <button className=' cursor-pointer px-6 py-2 rounded-md mb-6 bg-black text-white' onClick={() => navigate('/dashboard/items')}>Back</button>
-                    <div className='overflow-hidden w-[90%] h-[450px]'>
-                        <img className='w-full h-full object-cover' src={`${import.meta.env.VITE_APP_BACKEND_URL}/${item.image}`} alt="" />
-                    </div>
+                    {/* <div className='overflow-hidden w-[90%] h-[450px]'> */}
+                    {/* <img className='w-full h-full object-cover' src={`${import.meta.env.VITE_APP_BACKEND_URL}/${item.image}`} alt="" /> */}
+                    
+                    <ImageCarousel item={item} />
+                    {/* </div> */}
 
                 </div>
                 <div className='pt-14'>
