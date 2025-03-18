@@ -27,7 +27,7 @@ function PendingBuy() {
                                 <div className='w-[200px] rounded-md overflow-hidden'>
                                     <img
                                         className='w-full object-cover h-full'
-                                        src={`${import.meta.env.VITE_APP_BACKEND_URL}/${order.itemId.image}`}
+                                        src={`${import.meta.env.VITE_APP_BACKEND_URL}/${order.itemId.image[0]}`}
                                         alt=""
                                     />
                                 </div>

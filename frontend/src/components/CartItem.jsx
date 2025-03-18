@@ -16,7 +16,7 @@ function CartItem({ item, setCartItems }) {
     return (
         <div className='flex bg-black/10 p-4 rounded-md gap-10'>
             <div className='w-[200px] rounded-md overflow-hidden'>
-                <img className='w-full object-cover h-full' src={`${import.meta.env.VITE_APP_BACKEND_URL}/${item.image}`} alt="" />
+                <img className='w-full object-cover h-full' src={`${import.meta.env.VITE_APP_BACKEND_URL}/${item.image[0]}`} alt="" />
             </div>
             <div className=''>
                 <div className='text-4xl font-bold'>{item.itemName}</div>
