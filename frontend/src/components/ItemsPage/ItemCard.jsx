@@ -4,6 +4,7 @@ import { MdOutlineCurrencyRupee } from "react-icons/md";
 
 function ItemCard({ item }) {
     const navigate = useNavigate();
+    console.log(item)
     return (
         <div onClick={() => navigate(`/dashboard/items/${item._id}`)} className='w-[320px] hover:scale-95 transition-all duration-150 ease-in-out hover:cursor-pointer p-4 flex flex-col min-h-[350px] rounded-md bg-blue-100/50'>
             <div className='h-[200px] overflow-hidden rounded-md'>

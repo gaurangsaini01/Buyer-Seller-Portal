@@ -20,7 +20,15 @@ async function addItem(formData, token) {
     });
     console.log(res.data.data)
     return res.data.success;
-  } catch (err) {}
+  } catch (err) {
+    console.error("Error adding item:", err);
+    toast.error(err.response?.data?.message || "Failed to list item", {
+      autoClose: 1500,
+      position: "top-center",
+      theme: "dark",
+    });
+    return false;
+  }
 }
 
 async function getItemsData(token, search = "", categories = []) {
